@@ -2,7 +2,7 @@
 clear ; close all; clc; history -c
 
 %-------------------Loading Data-------------------------------------------
-fprintf("\n\nLoading and Pre-Processing data....\n\n");
+fprintf('\n\nLoading and Pre-Processing data....\n\n');
 train_data = csvread('../../../Data/train.csv');
 test_data = csvread('../../../Data/test.csv');
 
@@ -16,7 +16,7 @@ X = train_data;
 m = size(X,1);
 
 %-------------------Setting the parameters------------------------------------
-fprintf("\n\nSetting the Neural Network parameters....\n\n");
+fprintf('\n\nSetting the Neural Network parameters....\n\n');
 input_layer_size  = 784;  % 784 pixel values
 hidden_layer1_size = 250;   % 250 hidden units
 hidden_layer2_size = 250;   % 250 hidden units
@@ -66,7 +66,7 @@ temp3 = (num_labels*hidden_layer1_size+1);
 Theta3 = reshape(nn_params((temp1+temp2+1):end),num_labels,hidden_layer1_size+1);
 
 %% ================= Implement Predict =================
-fprintf("\n\nMaking Predictions on the Training Set....\n\n");
+fprintf('\n\nMaking Predictions on the Training Set....\n\n');
 pred = predict(Theta1, Theta2, Theta3, X);
 
 for i = 1:m,
@@ -78,7 +78,7 @@ end
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
 %% ================= Predict Test Data =================
-fprintf("\n\nMaking Predictions on the Test Set....\n\n");
+fprintf('\n\nMaking Predictions on the Test Set....\n\n');
 pred = predict(Theta1, Theta2, Theta3, test_data);
 
 for i = 1:size(pred),
@@ -88,7 +88,7 @@ for i = 1:size(pred),
 end
 
 %-----------------Writing output to file-----------------------------------
-fprintf("\n\nWriting Predictions to file (submission.csv)....\n\n");
+fprintf('\n\nWriting Predictions to file (submission.csv)....\n\n');
 ImageId = 1:1:size(pred);
 output = [ImageId' pred];
 csvwrite ('submission.csv', output);
